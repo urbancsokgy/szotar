@@ -1,0 +1,13 @@
+version: "2"
+services: 
+    mongodb:
+        container_name: szotardb
+        image : bitnami/mongodb:latest
+        build: 
+            dockerfile: Dockerfile
+            context: .
+        volumes:
+            - ./dict_database:/bitnami/mongodb
+        ports: 
+            - "27017:27017"
+        
