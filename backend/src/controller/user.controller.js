@@ -1,4 +1,5 @@
 const UserService = require('../service/user.service')
+const AddressService = require('../service/address.service')
 const model = require('../model/user.schema')
 
 exports.addUser = async (req, res, next) => {
@@ -14,6 +15,19 @@ exports.addUser = async (req, res, next) => {
     })
   } catch (err) {
     return res.status(400).json({ status: 400, message: err.message });
+  }
+}
+//--------------------
+exports.createWithAddress = async (req, res, next) => {
+  try {
+    const address = req.body.address
+    const newAddress = await AddressService.addNewAddress(address)
+    let newUserData = req.body
+    newUserData.address = newAddress._id
+    const newUser = await UserService.addUser(newUserData)
+    return res.status(200).json(await UserService.findOne(newUser._id))    
+  } catch (error) {
+    res.status(400).json({ status: 400, message: error.message })
   }
 }
 //------------

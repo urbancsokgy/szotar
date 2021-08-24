@@ -2,6 +2,7 @@ const router = require('express').Router()
 const controller = require('../controller/user.controller')
 
 router.post('/', controller.addUser)
+router.post('/withaddress', controller.createWithAddress)
 router.get('/', controller.findAll)
 router.get('/count', controller.count);
 router.get('/basicdata', controller.basicdata);

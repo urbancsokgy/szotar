@@ -6,7 +6,7 @@ exports.addNewAddress = async (req, res, next) => {
     const data = await AddressService.addNewAddress(req.body)
     return res.status(200).json({
       status: 200, 
-      // ...req.body     
+      ...data.toJSON(),     
       message : "create success"
     })
   } catch (err) {
