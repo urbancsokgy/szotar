@@ -32,7 +32,6 @@ exports.createWithAddress = async (req, res, next) => {
     const newUser = await UserService.addUser(newUserData)
     return res.status(200).json(await UserService.findOne(newUser._id))
   } catch (error) {
-    // console.log(error);
     res.status(400).json({ status: 400, message: error.message })
   }
 }
@@ -81,7 +80,6 @@ exports.update = async (req, res, next) => {
     updateData = req.body
     originData = await UserService.findOne(req.params.id)
     newData = { originData, ...updateData }
-    console.log(newData);
     responseData = await UserService.update(req.params.id, newData)
     return res.send(responseData)
   }
@@ -107,7 +105,6 @@ exports.delete = async (req, res, next) => {
     return res.json({ message: "user deleted" })
   }
   catch (error) {
-    console.error(error);
     return res.status(404).json({ status: "delete failed 404", message: error.message })
   }
 };
