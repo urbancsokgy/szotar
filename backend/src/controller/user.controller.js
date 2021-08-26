@@ -47,20 +47,19 @@ exports.basicdata = async (req, res, next) => {
     queryList = req.query
     const users = await UserService.findAll()
     const filteredData = users.map(data => {
-      let filter = {}
-      for (let key in queryList) {
-        let userKeys = Object.keys(data.toJSON())
-        if (userKeys.includes(key)) {
-          filter[key] = data[key]
-        }
-      }
-      filter._id = data._id
-      return filter
+      let filteredUser = {}
+      let user = data.toJSON()
+      Object.keys(queryList).forEach(key =>
+        filteredUser[key]=user[key],
+        )      
+      filteredUser._id = user._id
+      return filteredUser
     }
     )
     return res.json(filteredData)
 
   } catch (error) {
+    console.log(error);
     return res.status(404).json({ status: 404, err: error.message })
   }
 }
