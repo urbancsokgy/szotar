@@ -20,13 +20,19 @@ exports.addUser = async (req, res, next) => {
 //--------------------
 exports.createWithAddress = async (req, res, next) => {
   try {
-    const address = req.body.address
+    let address = { country: '', city: '', street: '', zip: '', building: '' }
+    const body = req.body;    
+    ['country', 'city', 'street', 'zip', 'building'].forEach(prop => 
+      address[prop] = body[prop])
     const newAddress = await AddressService.addNewAddress(address)
-    let newUserData = req.body
+    let newUserData = {};
+    ['firstName', 'lastName', 'street', 'email', 'password', 'role'].forEach( prop =>
+      newUserData[prop] = body[prop])
     newUserData.address = newAddress._id
     const newUser = await UserService.addUser(newUserData)
-    return res.status(200).json(await UserService.findOne(newUser._id))    
+    return res.status(200).json(await UserService.findOne(newUser._id))
   } catch (error) {
+    // console.log(error);
     res.status(400).json({ status: 400, message: error.message })
   }
 }
@@ -94,10 +100,11 @@ exports.count = async (req, res, next) => {
 //--------------------
 exports.delete = async (req, res, next) => {
   try {
-    if( ! await UserService.findOne(req.params.id)){
-       throw 'user not exists'}
-       await UserService.delete(req.params.id)
-    return res.json({message: "user deleted"})
+    if (! await UserService.findOne(req.params.id)) {
+      throw 'user not exists'
+    }
+    await UserService.delete(req.params.id)
+    return res.json({ message: "user deleted" })
   }
   catch (error) {
     console.error(error);
