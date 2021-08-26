@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
+const User = require ('../model/user.schema')
 
-delete mongoose.connection.models['Wordclass'];
-const WordClassSchema = mongoose.Schema({
-    hungarianName: {
+const CollectionSchema = mongoose.Schema({
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required : true       
+    },
+    name: {
         type: String,
         required: true,        
     },
@@ -17,12 +22,12 @@ const WordClassSchema = mongoose.Schema({
         timestamps: true
     })
 
-const Wordclass = mongoose.model('Wordclass', WordClassSchema, 'wordclasses');
+const Collection = mongoose.model('Collection', CollectionSchema, 'collections');
 // ----------------------
-Wordclass.createCollection().then(function(collection) {
-    collection.name='wordclasses'
+Collection.createCollection().then(function(collection) {
+    collection.name='collections'
     console.log('Collection is created!');
     console.log('Collection name!', collection.name);
   });
 //---------------------
-module.exports = Wordclass;
+module.exports = Collection;

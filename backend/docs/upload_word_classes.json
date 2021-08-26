@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "61278676678e91c29335770e"
+  },
+  "hungarianName": "főnév",
+  "englishName": "noun"
+},{
+  "_id": {
+    "$oid": "61278676678e91c29335770f"
+  },
+  "hungarianName": "ige",
+  "englishName": "verb"
+},{
+  "_id": {
+    "$oid": "61278676678e91c293357710"
+  },
+  "hungarianName": "melléknév",
+  "englishName": "adjective"
+},{
+  "_id": {
+    "$oid": "61278676678e91c293357711"
+  },
+  "hungarianName": "határozószó ",
+  "englishName": "adverb"
+},{
+  "_id": {
+    "$oid": "61278676678e91c293357712"
+  },
+  "hungarianName": "elöljárószó ",
+  "englishName": "preposition"
+},{
+  "_id": {
+    "$oid": "61278676678e91c293357713"
+  },
+  "hungarianName": "determináns  ",
+  "englishName": "determiner"
+},{
+  "_id": {
+    "$oid": "61278676678e91c293357714"
+  },
+  "hungarianName": "kötőszó",
+  "englishName": "conjunction"
+},{
+  "_id": {
+    "$oid": "61278676678e91c293357715"
+  },
+  "hungarianName": "indulatszó ",
+  "englishName": "interjection"
+}]
