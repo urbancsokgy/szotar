@@ -25,7 +25,8 @@ const UserSchema = mongoose.Schema({
     },
 }, {
     timestamps: true
-});
+},
+{ versionKey: false});
 
 // automatically adds { password: String }
 UserSchema.plugin(require('mongoose-bcrypt'));

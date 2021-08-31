@@ -16,6 +16,7 @@ exports.addWord = modelData => {
 }
 exports.count = (obj = {}) => Model.count(obj)
 exports.findAll = () => Model.find().populate(populateFields)
+exports.findAllBasic = () => Model.find().populate()
 
 exports.findOne = id => Model.findById(id).populate(populateFields)
 

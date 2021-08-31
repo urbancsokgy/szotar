@@ -27,6 +27,14 @@ exports.findAll = async (req, res, next) => {
         return res.status(400).json({ status: 400, message: error.message })
     }
 }
+exports.findAllBasic = async (req, res, next) => {
+    try {
+        return res.json(await WordService.findAllBasic())
+
+    } catch (error) {
+        return res.status(400).json({ status: 400, message: error.message })
+    }
+}
 exports.findOne = async (req, res, next) => {
     try {
         data = await WordService.findOne(req.params.id)
@@ -38,7 +46,9 @@ exports.findOne = async (req, res, next) => {
 exports.update = async (req, res, next) => {
     try {
         const oldData = await WordService.findOne(req.params.id)
-        const updateData = { ...oldData.toJSON(), ...req.body }
+        let  updateData={}
+        image_name = (req.file?.originalname ||oldData.image_name)
+        updateData = { ...oldData.toJSON(), ...req.body ,image_name}
         data = await WordService.update(req.params.id, updateData)
         return res.json(data)
     } catch (error) {

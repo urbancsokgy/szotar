@@ -25,7 +25,8 @@ const AddressSchema = mongoose.Schema({
 },
     {
         timestamps: true
-    })
+    },
+    { versionKey: false})
 
 const Address = mongoose.model('Address', AddressSchema, 'adresses');
 // ----------------------
