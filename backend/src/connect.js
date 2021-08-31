@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 const connectionString =
-  `mongodb://localhost:27017/szotarDB?retryWrites=true&w=majority`
+`mongodb+srv://${process.env.DB_USER_REMOTE}:${process.env.DB_PASSWORD_REMOTE}@cluster0.jzldu.mongodb.net/szotarDB?retryWrites=true&w=majority`
+ // `mongodb://localhost:27017/szotarDB?retryWrites=true&w=majority`
+
 const options = {
   useNewUrlParser: true,
   useNewUrlParser: true,
@@ -15,3 +18,4 @@ exports.connect = mongoose.connect(connectionString, options)
     console.error(err)    
     process.exit(-1);
   });
+

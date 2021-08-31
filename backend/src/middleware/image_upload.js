@@ -1,4 +1,4 @@
-const multer  = require('multer');
+const multer = require('multer');
 
 // const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -20,20 +20,22 @@ const fileFilter = (req, file, cb) => {
     }
 
 };
-let myupload = multer({ storage: storage, fileFilter: fileFilter,}).single('image');
+let myupload = multer({ storage: storage, fileFilter: fileFilter, }).single('image');
 
-exports.imageUpload =async (req, res, next) =>{
-    try {
-      await  myupload(req, res, (err) => {
-            if(err) {
-                return  res.status(400).send(err);
-            }         
-            next()
-          });        
-    } catch (error) {
-     return   res.json({message: error.message})
+exports.imageUpload = async (req, res, next) => {
+    if (!storage) { return req.file.originalname = 'default.jpg' }
+    else {
+        try {
+            await myupload(req, res, (err) => {
+                if (err) {
+                    return res.status(400).send(err);
+                }
+                next()
+            });
+        } catch (error) {
+            return res.json({ message: error.message })
+        }
     }
-    
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
-  }
+}

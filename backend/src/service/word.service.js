@@ -1,7 +1,14 @@
 const { Collection } = require('mongoose')
 const Model = require('../model/word.schema')
 
-populateFields = ['collection_name', 'wordclass']
+populateFields = ['collection_name', 'wordclass',
+{
+    path: 'collection_name',
+    model: 'Collection',
+    populate : {
+        path: 'owner',
+        model: 'User',  
+    }}]
 
 exports.addWord = modelData => {
     const model = new Model(modelData)
