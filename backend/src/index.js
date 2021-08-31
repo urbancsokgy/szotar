@@ -5,8 +5,6 @@ const mongoose = require('mongoose')
 const db = require('./connect')
 require('dotenv').config()
 // -------- image -- multer
-const multer  = require('multer')
-const upload = multer({ dest: '../public/img/uploads/' })
 
 const port = process.env.PORT || 3000
 
