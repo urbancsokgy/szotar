@@ -11,13 +11,14 @@ const port = process.env.PORT || 3000
 app.use(bodyParser.json())
 
 app.use(express.static('public'));
-app.get('/', (req, res) => {res.send('Hello World!')})
-app.use('/api/users',require('./router/user.route'))
-app.use('/api/addresses',require('./router/address.route'))
-app.use('/api/collections',require('./router/collection.route'))
-app.use('/api/wordtype',require('./router/wordtype.route'))
-app.use('/api/words',require('./router/word.route'))
+app.get('/', (req, res) => { res.send('Hello World!') })
+app.use('/api/users', require('./router/user.route'))
+app.use('/api/addresses', require('./router/address.route'))
+app.use('/api/collections', require('./router/collection.route'))
+app.use('/api/wordtype', require('./router/wordtype.route'))
+app.use('/api/words', require('./router/word.route'))
 app.use('/api/image', require('./router/image.route'))
+app.use('/api/auth', require('./auth/auth.route'))
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

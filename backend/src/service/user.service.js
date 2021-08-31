@@ -9,7 +9,8 @@ exports.addUser = modelData => {
 exports.count = (obj = {}) => Model.count(obj)
 exports.findAll = () => Model.find().populate('address')
 
-exports.findOne = id => Model.findById(id).populate('address')
+exports.findById = id => Model.findById(id).populate('address')
+exports.findOne = prop => Model.findOne(prop)
 
 exports.update = (id, updateData) => 
     Model.findByIdAndUpdate(id, updateData, {new: true})

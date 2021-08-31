@@ -64,10 +64,25 @@ exports.basicdata = async (req, res, next) => {
   }
 }
 //-------------------
+exports.finddById = async (req, res, next) => {
+  try {
+    const user = await UserService.findById(req.params.id)
+    return res.json(user);
+  }
+  catch (error) {
+    return res.status(404).json({ status: 404, err: error.message })
+  }
+};
+//-----------------------
 exports.findOne = async (req, res, next) => {
   try {
-    const user = await UserService.findOne(req.params.id)
-    return res.json(user);
+    const prop = req.body
+    if (Object.keys(prop).length>0) {
+      const user = await UserService.findOne(prop)
+      let {email, password} = user
+      return res.json({email, password});
+    }
+    else { return res.json({}) }
   }
   catch (error) {
     return res.status(404).json({ status: 404, err: error.message })
@@ -77,7 +92,7 @@ exports.findOne = async (req, res, next) => {
 exports.update = async (req, res, next) => {
   try {
     updateData = req.body
-    originData = await UserService.findOne(req.params.id)
+    originData = await UserService.findById(req.params.id)
     newData = { originData, ...updateData }
     responseData = await UserService.update(req.params.id, newData)
     return res.send(responseData)
