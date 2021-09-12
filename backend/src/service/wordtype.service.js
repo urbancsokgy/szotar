@@ -8,7 +8,7 @@ const Model = require('../model/wordtype.schema')
 // }
 exports.count = (obj = {}) => Model.count(obj)
 exports.findAll = () => Model.find().populate('user')
-
+exports.findWithFilter = (prop) => Model.find(prop).populate()
 exports.findOne = id => Model.findById(id).populate('user')
 
 // exports.update = (id, updateData) => 

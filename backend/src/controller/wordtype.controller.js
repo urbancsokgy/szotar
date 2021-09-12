@@ -29,6 +29,14 @@ exports.findAll = async (req, res, next) =>{
         return res.status(400).json({ status: 400, message: error.message })
     }
 }
+//------------
+exports.findWithFilter = async (req, res, next) => {
+    prop = req.query
+    console.log("filtered", prop);
+    const users = await WordtypeService.findWithFilter(prop)
+    return res.json(users)
+  
+  };
 exports.findOne = async (req, res, next) =>{
     try {
         data = await WordtypeService.findOne(req.params.id)

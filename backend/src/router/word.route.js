@@ -7,12 +7,14 @@ const adminOnly = require('../auth/adminOnly');
 const selfOnly = require('../auth/selfOnly');
 
 
-router.post('/', imageUpload, resize, controller.addWord)
+router.post('/', imageUpload, resize(800), controller.addWord)
 router.get('/', controller.findAll)
+router.get('/filter', controller.findWithFilter)
 router.get('/basic', controller.findAllBasic)
 router.get('/count', controller.count);
+router.get('/prop', controller.findWithProperty)
 router.get('/:id', controller.findOne)
-router.put('/:id', imageUpload, resize, controller.update)
+router.put('/:id', imageUpload, resize(800), controller.update)
 router.delete('/:id', controller.delete)
 
 module.exports = router

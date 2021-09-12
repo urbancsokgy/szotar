@@ -10,6 +10,15 @@ const WordSchema = mongoose.Schema({
         type: String,
         required: true,        
     },
+    example: {
+        type: String,
+        default: "Example missing."
+    },
+    example_hungarian: {
+        type: String,
+        default: "Nincs példamondat."
+    },
+
     image_name: {
         type: String,
         required: true,        

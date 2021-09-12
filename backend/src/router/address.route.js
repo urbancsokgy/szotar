@@ -7,6 +7,7 @@ const selfOnly = require('../auth/selfOnly');
 
 router.post('/', controller.addNewAddress)
 router.get('/', controller.findAll)
+router.get('/filter', controller.findWithFilter)
 router.get('/count', controller.count);
 router.get('/basicdata', controller.basicdata);
 router.get('/:id', controller.findOne)

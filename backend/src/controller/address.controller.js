@@ -19,6 +19,14 @@ exports.findAll = async (req, res, next) => {
   return res.json(addresses)
 
 };
+//------------
+exports.findWithFilter = async (req, res, next) => {
+  prop = req.query
+  console.log("filtered", prop);
+  const users = await AddressService.findWithFilter(prop)
+  return res.json(users)
+
+};
 //-------------------------
 exports.basicdata = async (req, res, next) => {
   try {

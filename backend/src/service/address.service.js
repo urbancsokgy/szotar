@@ -13,7 +13,7 @@ exports.count = () => Model.estimatedDocumentCount();
 exports.findAll = () => Model.find().populate();
 
 exports.findOne = id => Model.findById(id)
-
+exports.findWithFilter = (prop) => Model.find(prop).populate()
 exports.update = (id, updateData) => 
     Model.findByIdAndUpdate(id, updateData, {new: true});
 

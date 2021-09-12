@@ -17,7 +17,8 @@ exports.addWord = modelData => {
 exports.count = (obj = {}) => Model.count(obj)
 exports.findAll = () => Model.find().populate(populateFields)
 exports.findAllBasic = () => Model.find().populate()
-
+exports.findWithProperty = prop => Model.findOne(prop).populate()
+exports.findWithFilter = (prop) => Model.find(prop).populate()
 exports.findOne = id => Model.findById(id).populate(populateFields)
 
 exports.update = (id, updateData) => 

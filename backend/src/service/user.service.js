@@ -8,6 +8,7 @@ exports.addUser = modelData => {
 }
 exports.count = (obj = {}) => Model.count(obj)
 exports.findAll = () => Model.find().populate('address')
+exports.findWithFilter = (prop) => Model.find(prop).populate()
 
 exports.findById = id => Model.findById(id).populate('address')
 exports.findOne = prop => Model.findOne(prop)

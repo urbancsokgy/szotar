@@ -8,6 +8,7 @@ const selfOnly = require('../auth/selfOnly');
 //router.post('/', controller.addCollection)
 // router.post('/withAddress', controller.createWithAddress)
 router.get('/', controller.findAll)
+router.get('/filter', controller.findWithFilter)
 router.get('/count', restricted, adminOnly, controller.count);
 router.get('/:id', controller.findOne)
 // router.put('/:id', controller.update)

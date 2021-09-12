@@ -1,0 +1,12 @@
+.card{
+  animation: grow .2s;
+}
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.grow:hover { transform: scale(1.05); }

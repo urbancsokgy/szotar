@@ -16,7 +16,10 @@ const CollectionSchema = mongoose.Schema({
         required: true,
         default: 'Nincs angol megfelelő társítva.'
         
-    }
+    },image_name: {
+        type: String,
+        required: true,        
+    },
 },
     {
         timestamps: true

@@ -1,10 +1,13 @@
 const UserService = require('../service/user.service')
 const AddressService = require('../service/address.service')
 const model = require('../model/user.schema')
+const {deleteImage} = require('./image.delete')
 
 exports.addUser = async (req, res, next) => {
   try {
-    req.body.role = "user"
+    req.body.role = "user" 
+    req.body.active = true
+    req.body.avatar = (req.file?.originalname || 'default_avatar.webp')   
     const data = await UserService.addUser(req.body)
     return res.status(200).json({
       status: 200,
@@ -25,10 +28,15 @@ exports.createWithAddress = async (req, res, next) => {
     ['country', 'city', 'street', 'zip', 'building'].forEach(prop => 
       address[prop] = body[prop])
     const newAddress = await AddressService.addNewAddress(address)
+    req.body.role = "user" 
+    req.body.active = true
     let newUserData = {};
     ['firstName', 'lastName', 'street', 'email', 'password', 'role'].forEach( prop =>
       newUserData[prop] = body[prop])
     newUserData.address = newAddress._id
+    newUserData.avatar = (req.file?.originalname || 'default_avatar.webp')
+    newUserData.role = "user" 
+    newUserData.active = true
     const newUser = await UserService.addUser(newUserData)
     return res.status(200).json(await UserService.findOne(newUser._id))
   } catch (error) {
@@ -38,6 +46,14 @@ exports.createWithAddress = async (req, res, next) => {
 //------------
 exports.findAll = async (req, res, next) => {
   const users = await UserService.findAll()
+  return res.json(users)
+
+};
+//------------
+exports.findWithFilter = async (req, res, next) => {
+  prop = req.query
+  console.log("filtered", prop);
+  const users = await UserService.findWithFilter(prop)
   return res.json(users)
 
 };
@@ -92,6 +108,7 @@ exports.findOne = async (req, res, next) => {
 exports.update = async (req, res, next) => {
   try {
     updateData = req.body
+    updateData.avatar = (req.file?.originalname || 'default_avatar.webp')
     originData = await UserService.findById(req.params.id)
     newData = { originData, ...updateData }
     responseData = await UserService.update(req.params.id, newData)
@@ -112,10 +129,21 @@ exports.count = async (req, res, next) => {
 //--------------------
 exports.delete = async (req, res, next) => {
   try {
-    if (! await UserService.findOne(req.params.id)) {
+    if (! await UserService.findById(req.params.id)) {
       throw 'user not exists'
     }
+    // kép törlése
+    data = await UserService.findById(req.params.id)
+        imageName= data.avatar
+        dir = "/public/img/avatar/"
+        if(imageName != "default_avatar.webp"){
+          deleteImage(dir, imageName)
+        }
+    // address törlése
+    currentAddress = data.address
     await UserService.delete(req.params.id)
+    await AddressService.delete(currentAddress)
+    
     return res.json({ message: "user deleted" })
   }
   catch (error) {

@@ -23,6 +23,17 @@ const UserSchema = mongoose.Schema({
         ref: 'Address',
         required : true
     },
+    avatar:  
+    {
+        type : String,
+        default: "default_avatar-webp"
+    
+    },
+    active: {
+        type: Boolean,
+        required: true,
+        default: true,
+    },
 }, {
     timestamps: true
 },
