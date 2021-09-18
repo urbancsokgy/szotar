@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4 ps-1 ">
+<nav id="top" class="navbar navbar-expand-lg shadow-lg mb-5  navbar-dark bg-dark p-4 ps-1 ">
   <div class="container-fluid text-white justify-content-lg-start ">
     <a class="navbar-brand" href="#">Képes-hangos angol szótár</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
       </ul>
 
     </div>
-    <div class="dropdown ms-lg-3 ms justify-items-lg-end" >
+    <div class="dropdown ms-lg-3 ms-auto " >
       <button class="btn btn-secondary  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-user"></i>
       </button>
@@ -40,3 +40,10 @@
     </div>
   </div>
 </nav>
+
+<!-- Alul fix elem -->
+<div class="topButton position-fixed bottom-0 end-0 float-end m-3">
+  <a (click)="onClick('top')">
+    <i class=" fas fa-caret-square-up fa-5x text-success " aria-hidden="true"></i>
+  </a>
+</div>

@@ -1,3 +1,5 @@
+import { RegisterComponent } from './page/register/register.component';
+import { UserdetailComponent } from './page/userdetail/userdetail.component';
 import { HomeComponent } from './page/home/home.component';
 import { UsersComponent } from './page/users/users.component';
 import { NgModule } from '@angular/core';
@@ -11,6 +13,14 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
+  },
+  {
+    path: 'userdetail/:id',
+    component: UserdetailComponent,
+  },
+  {
+    path: 'register/:add',
+    component: RegisterComponent,
   },
   {
     path: '**',

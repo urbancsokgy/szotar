@@ -1,0 +1,45 @@
+
+<div   class="container mt-3 mb-5" >
+  <div class="row">
+    <div class="col-10 offset-1">
+      <div class="jumbotron shadow-lg border border-secondary border-1 p-2 p-md-5 ">
+        <div class="upper  d-flex flex-column flex-md-row justify-content-md-around">
+          <div class="image align-self-center align-self-md-start">
+            <img src={{imgUrl}}{{selectedUser.avatar}} class=" border border-secondary shadow-lg" alt="{{selectedUser.lastName}} {{selectedUser.firstName}}">
+          </div>
+          <div class="wrap m-4 ml-md-5 mt-0 mb-0 text-center text-md-start">
+            <p class="lead mb-0 mt-sm-3"><b>Név:</b></p>
+            <h1>{{selectedUser.lastName}} {{selectedUser.firstName}}</h1>
+            <p class="lead"><b>Email:</b> {{selectedUser.email}}</p>
+            <p class="lead"><b>Szerep:</b> {{selectedUser.role}}</p>
+            <p class="lead mb-0"><b>Aktív: </b>
+              <i *ngIf="selectedUser.active=== true" class='fas fa-check text-success'></i>
+              <i *ngIf="selectedUser.active=== false" class="fa fa-times text-danger"></i>
+            </div>
+        </div>
+          <hr class="my-4">
+         <!-- Accordion -->
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Cím:
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p class="lead"><b>Ország:</b> {{selectedUser.address.country}}</p>
+        <p class="lead"><b>Város:</b> {{selectedUser.address.city}}</p>
+        <p class="lead"><b>Utca:</b> {{selectedUser.address.street}}</p>
+        <p class="lead"><b>Házszám:</b> {{selectedUser.address.building}}.</p>
+        <p class="lead"><b>Irányítószám:</b> {{selectedUser.address.zip}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
+

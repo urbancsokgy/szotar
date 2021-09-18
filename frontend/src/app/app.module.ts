@@ -10,6 +10,7 @@ import { LoginComponent } from './page/login/login.component';
 import { RegisterComponent } from './page/register/register.component';
 import { HomeComponent } from './page/home/home.component';
 import { UsersComponent } from './page/users/users.component';
+import { UserdetailComponent } from './page/userdetail/userdetail.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UsersComponent } from './page/users/users.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    UserdetailComponent
   ],
   imports: [
     BrowserModule,
