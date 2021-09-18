@@ -1,1 +1,65 @@
-<p>register works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <!-- Form start -->
+      <h4>A mezők kitöltése kötelező!</h4>
+      <form class="" #userform="ngForm" (ngSubmit)="submit(userform)">
+        <!-- lastName -->
+        <div class="form-floating form-group mb-3" [ngClass]="{'border border-danger' : firstName.pristine || firstName.invalid}">
+          <input type="text" class="form-control" id="lastName" required pattern="^[A-ZÁ-Ü]+[A-ZÁ-Üa-zá-ü-\s]*"
+          [(ngModel)]="newUser.lastName" name="lastName" #lastName="ngModel" placeholder="Keresztnév">
+          <label for="lastName" class="">Vezetéknév</label>
+        </div>
+        <!-- firstName -->
+        <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : firstName.pristine || firstName.invalid}">
+          <input type="text" class="form-control" id="firstName" required pattern="^[A-ZÁ-Ü]+[A-ZÁ-Üa-zá-ü-\s]*"
+          [(ngModel)]="newUser.firstName" name="firstName" #firstName="ngModel" placeholder="Keresztnév">
+          <label for="firstName" class="">Keresztnév</label>
+        </div>
+        <!-- email -->
+        <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : email.pristine || email.invalid}">
+          <input type="email" class="form-control" id="email" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+          [(ngModel)]="newUser.email" name="email" #email="ngModel" placeholder="Keresztnév">
+          <label for="email" class="">Email</label>
+        </div>
+        <!--  password -->
+        <label for="password" class="form-label" >Jelszó <span><small>(Legalább: 8 karakter,1 kis-és nagybetű,1 speciális karakter )</small></span></label>
+        <div class="form-group mb-3 input-group" >
+
+          <input [type]="inputType" class="form-control" id="password"
+          required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          [(ngModel)]="newUser.password" #password="ngModel" name="password"  [ngClass]="{'bg-mysuccess' :password.valid, 'border border-danger' : password.pristine || password.invalid }"
+          (ngModelChange)="setPassword(newUser.password)" placeholder="Password">
+
+          <span class="input-group-text" (click)="setShowHide()" [ngClass]="!(inputType==='password') ? 'd-none': '' "  >
+            <i class="fas fa-eye" ></i>
+          </span>
+          <span class="input-group-text" (click)="setShowHide()" [ngClass]="(inputType==='password') ? 'd-none': '' "  >
+            <i class="fas fa-eye-slash " ></i>
+          </span>
+        </div>
+        <!--  password retype-->
+        <div class="wrapper mb-3">
+          <label for="passwordRetype" class="form-label" >Jelszó megerősítés</label>
+          <div class="form-group input-group">
+            <input [type]="inputType" class="form-control" id="passwordRetype" required
+            [(ngModel)]="passwordRetype"  name="passwordRetype" #pwRetype="ngModel" (ngModelChange)="checkPassword(newUser.password, passwordRetype)"
+            (blur)="checkPassword(newUser.password, passwordRetype)" (onblur)="checkPassword(newUser.password, passwordRetype)"
+            placeholder="Password" [ngClass]="{'bg-mysuccess': passwordCheckFlag}">
+            <span class="input-group-text" (click)="setShowHide()" [ngClass]="!(inputType==='password') ? 'd-none': '' "  >
+              <i class="fas fa-eye" ></i>
+            </span>
+            <span class="input-group-text" (click)="setShowHide()" [ngClass]="(inputType==='password') ? 'd-none': '' "  >
+              <i class="fas fa-eye-slash " ></i>
+            </span>
+          </div>
+          <span class="text-danger" *ngIf="passwordErrorFlag && !pwRetype.pristine"><small>A két jelszó nem egyezik meg.</small></span>
+        </div>
+
+
+        <button type="submit" [disabled]="!userform.valid" class="btn btn-primary">Submit</button>
+
+      </form>
+    </div>
+  </div>
+</div>
