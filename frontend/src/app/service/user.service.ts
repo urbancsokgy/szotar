@@ -18,7 +18,7 @@ export class UserService {
    create(user : User): Observable<User>{
      return this.http.post<User>(this.baseUrl, user)
    }
-   createWithAddress(userWithAddress : UserWithAddress): Observable<UserWithAddress>{
+   createWithAddress(userWithAddress : FormData): Observable<UserWithAddress>{
      return this.http.post<UserWithAddress>(`${this.baseUrl}/withAddress`, userWithAddress)
    }
 
@@ -37,7 +37,7 @@ export class UserService {
   getByID(id: string): Observable<UserWithAddress>{
     return this.http.get<UserWithAddress>(`${this.baseUrl}/${id}`)
   }
-  update(id: string, data: UserWithAddress): Observable<UserWithAddress>{
+  update(id: string, data: FormData): Observable<UserWithAddress>{
     return this.http.put<UserWithAddress>(`${this.baseUrl}/${id}`, data)
   }
   delete(id: string): Observable<void>{

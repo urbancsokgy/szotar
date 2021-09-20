@@ -1,3 +1,5 @@
+import { LoginComponent } from './page/login/login.component';
+import { UserupdateComponent } from './page/userupdate/userupdate.component';
 import { RegisterComponent } from './page/register/register.component';
 import { UserdetailComponent } from './page/userdetail/userdetail.component';
 import { HomeComponent } from './page/home/home.component';
@@ -17,6 +19,14 @@ const routes: Routes = [
   {
     path: 'userdetail/:id',
     component: UserdetailComponent,
+  },
+  {
+    path: 'userupdate/:id',
+    component: UserupdateComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'register/:add',

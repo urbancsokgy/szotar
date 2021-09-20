@@ -62,6 +62,7 @@ exports.findOne = async (req, res, next) => {
 };
 //-----------------------
 exports.update = async (req, res, next) => {
+  console.log("Hahó update");
   try {
     updateData = req.body
     originData = await AddressService.findOne(req.params.id)

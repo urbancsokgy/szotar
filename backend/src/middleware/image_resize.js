@@ -8,8 +8,9 @@ exports.resize = (size, dir) => {
   if(req.file!=undefined){
     let image = sharp(req.file.buffer);
     const myDate = new Date().toISOString().slice(0,20).split(':').join('.')
-      .split('-').join('.')
-      fileName= myDate+req.file.originalname.split('.').slice(0, -1).join('.').concat('.webp')
+    .split('-').join('.')
+    console.log('resize originname: ' , req.file.originalname);
+    fileName= myDate+req.file.originalname.split('.').slice(0, -1).join('.').concat('.webp')
       newFile= `${process.cwd()}/public/img/${dir}${fileName}`
       newSize = 0
      

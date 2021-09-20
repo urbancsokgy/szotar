@@ -13,7 +13,7 @@ export interface User extends UserBasicData{
   firstName: string;
   lastName: string;
   address: string;
-  avatar: string;
+  avatar: File | null;
 }
 export interface UserWithAddress extends User, Address{
 }

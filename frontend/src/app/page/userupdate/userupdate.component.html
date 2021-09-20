@@ -2,24 +2,24 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <!-- Form start -->
-      <h4>A mezők kitöltése kötelező!</h4>
+      <h4>Felhasználói adatok változtatása.</h4>
       <form class="" #userform="ngForm" (ngSubmit)="submit(userform)">
         <!-- lastName -->
         <div class="form-floating form-group mb-3" [ngClass]="{'border border-danger' : firstName.pristine || firstName.invalid}">
           <input type="text" class="form-control" id="lastName" required pattern="^[A-ZÁ-ÜÖÜŐŰ]+[A-ZÁ-Üa-zá-üüöűő-\s]*"
-          [(ngModel)]="newUser.lastName" name="lastName" #lastName="ngModel" placeholder="Keresztnév">
+          [(ngModel)]="userUpdate.lastName" name="lastName" #lastName="ngModel" placeholder="Keresztnév">
           <label for="lastName" class="">Vezetéknév</label>
         </div>
         <!-- firstName -->
         <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : firstName.pristine || firstName.invalid}">
           <input type="text" class="form-control" id="firstName" required pattern="^[A-ZÁ-ÜÖÜŐŰ]+[A-ZÁ-Üa-zá-üüöűő-\s]*"
-          [(ngModel)]="newUser.firstName" name="firstName" #firstName="ngModel" placeholder="Keresztnév">
+          [(ngModel)]="userUpdate.firstName" name="firstName" #firstName="ngModel" placeholder="Keresztnév">
           <label for="firstName" class="">Keresztnév</label>
         </div>
         <!-- email -->
         <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : email.pristine || email.invalid}">
           <input type="email" class="form-control" id="email" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-          [(ngModel)]="newUser.email" name="email" #email="ngModel" placeholder="Keresztnév">
+          [(ngModel)]="userUpdate.email" name="email" #email="ngModel" placeholder="Keresztnév">
           <label for="email" class="">Email</label>
         </div>
         <!--  password -->
@@ -27,9 +27,9 @@
         <div class="form-group mb-3 input-group" >
 
           <input [type]="inputType" class="form-control" id="password"
-          required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-          [(ngModel)]="newUser.password" #password="ngModel" name="password"  [ngClass]="{'bg-mysuccess' :password.valid, 'border border-danger' : password.pristine || password.invalid }"
-          (ngModelChange)="setPassword(newUser.password)" placeholder="Password">
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          [(ngModel)]="userUpdate.password" #password="ngModel" name="password"  [ngClass]="{'bg-mysuccess' :password.valid, 'border border-danger' : password.pristine || password.invalid }"
+          (ngModelChange)="setPassword(userUpdate.password)" placeholder="Password">
 
           <span class="input-group-text" (click)="setShowHide()" [ngClass]="!(inputType==='password') ? 'd-none': '' "  >
             <i class="fas fa-eye" ></i>
@@ -42,9 +42,9 @@
         <div class="wrapper mb-3">
           <label for="passwordRetype" class="form-label" >Jelszó megerősítés</label>
           <div class="form-group input-group">
-            <input [type]="inputType" class="form-control" id="passwordRetype" required
-            [(ngModel)]="passwordRetype"  name="passwordRetype" #pwRetype="ngModel" (ngModelChange)="checkPassword(newUser.password, passwordRetype)"
-            (blur)="checkPassword(newUser.password, passwordRetype)" (onblur)="checkPassword(newUser.password, passwordRetype)"
+            <input [type]="inputType" class="form-control" id="passwordRetype"
+            [(ngModel)]="passwordRetype"  name="passwordRetype" #pwRetype="ngModel" (ngModelChange)="checkPassword(userUpdate.password, passwordRetype)"
+            (blur)="checkPassword(userUpdate.password, passwordRetype)" (onblur)="checkPassword(userUpdate.password, passwordRetype)"
             placeholder="Password" [ngClass]="{'bg-mysuccess': passwordCheckFlag}">
             <span class="input-group-text" (click)="setShowHide()" [ngClass]="!(inputType==='password') ? 'd-none': '' "  >
               <i class="fas fa-eye" ></i>
@@ -59,8 +59,8 @@
         <div class="row" *ngIf="urlParam=='add'">
           <div class="col-12 col-md-6  mb-3">
             <label for="role" class="form-label">Szerep</label>
-            <select class="form-select" id="role" [(ngModel)]="newUser.role"  name="role" #role="ngModel"  aria-label="user">
-              <option [selected]="newUser.role">{{newUser.role}}</option>
+            <select class="form-select" id="role" [(ngModel)]="userUpdate.role"  name="role" #role="ngModel"  aria-label="user">
+              <option [selected]="userUpdate.role">{{userUpdate.role}}</option>
               <option value="admin">admin</option>
             </select>
           </div>
@@ -68,8 +68,8 @@
 
           <div class="col-12 col-md-6  mb-3">
             <label for="active" class="form-label">Aktív</label>
-            <select class="form-select" id="active" [(ngModel)]="newUser.active"  name="active" #active="ngModel"  aria-label="true">
-              <option [selected]="newUser.active">{{newUser.active}}</option>
+            <select class="form-select" id="active" [(ngModel)]="userUpdate.active"  name="active" #active="ngModel"  aria-label="true">
+              <option [selected]="userUpdate.active">{{userUpdate.active}}</option>
               <option value="false">false</option>
             </select>
           </div>
@@ -81,26 +81,26 @@
         </div>
         <div class="mb-3">
           <label for="avatar" class="form-label">Tölts fel egy képfájlt! "avatar"</label>
-          <input class="form-control" [(ngModel)]="newUser.avatar" name="avatar" accept="image/png, image/jpeg, image/jpg"
+          <input class="form-control" [(ngModel)]="userUpdate.avatar" name="avatar" accept="image/png, image/jpeg, image/jpg"
             #avatar="ngModel" type="file" id="avatar" (change)="handleFileInput($any($event.target).files)">
         </div>
         <!-- Address -->
         <!-- Country -->
         <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : country.invalid}">
           <input type="text" class="form-control" id="country" required pattern="^[A-ZÁ-ÜÖÜŐŰ]+[A-ZÁ-Üa-zá-üüöűő-\s]*"
-          [(ngModel)]="newUser.country" name="country" #country="ngModel" placeholder="Ország">
+          [(ngModel)]="userUpdate.country" name="country" #country="ngModel" placeholder="Ország">
           <label for="country" class="">Ország</label>
         </div>
         <!-- City -->
         <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : city.pristine || city.invalid}">
           <input type="text" class="form-control" id="city" required pattern="^[A-ZÁ-ÜÖÜŐŰ]+[A-ZÁ-Üa-zá-üüöűő-\s]*"
-          [(ngModel)]="newUser.city" name="city" #city="ngModel" placeholder="Város">
+          [(ngModel)]="userUpdate.city" name="city" #city="ngModel" placeholder="Város">
           <label for="city" class="">Város</label>
         </div>
         <!-- street -->
         <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : street.pristine || street.invalid}">
           <input type="text" class="form-control" id="street" required pattern="^[A-ZÁ-ÜÖÜŐŰ]+[A-ZÁ-Üa-zá-üüöűő-\s.0-9-/]*"
-          [(ngModel)]="newUser.street" name="street" #street="ngModel" placeholder="Utca">
+          [(ngModel)]="userUpdate.street" name="street" #street="ngModel" placeholder="Utca">
           <label for="street" class="">Utca</label>
         </div>
         <!-- New row -->
@@ -109,7 +109,7 @@
         <!-- Zip -->
         <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : zip.pristine || zip.invalid}">
           <input type="number" class="form-control" id="zip" required min="1000" pattern="^[0-9]{4}$"
-          [(ngModel)]="newUser.zip" name="zip" #zip="ngModel" placeholder="Irányítószám">
+          [(ngModel)]="userUpdate.zip" name="zip" #zip="ngModel" placeholder="Irányítószám">
           <label for="zip" class="">Irányítószám</label>
         </div>
           </div>
@@ -117,7 +117,7 @@
         <div class="col-12 col-md-6  mb-3">
         <div class="form-floating form-group mb-3  " [ngClass]="{'border border-danger' : building.pristine || building.invalid}">
           <input type="number" class="form-control" id="building" required pattern="^[1-9]+[0-9]*$"
-          [(ngModel)]="newUser.building" name="building" #building="ngModel" placeholder="Házszám">
+          [(ngModel)]="userUpdate.building" name="building" #building="ngModel" placeholder="Házszám">
           <label for="building" class="">Házszám</label>
         </div>
         </div>

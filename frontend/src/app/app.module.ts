@@ -11,6 +11,8 @@ import { RegisterComponent } from './page/register/register.component';
 import { HomeComponent } from './page/home/home.component';
 import { UsersComponent } from './page/users/users.component';
 import { UserdetailComponent } from './page/userdetail/userdetail.component';
+import { LoginpageComponent } from './page/loginpage/loginpage.component';
+import { UserupdateComponent } from './page/userupdate/userupdate.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { UserdetailComponent } from './page/userdetail/userdetail.component';
     RegisterComponent,
     HomeComponent,
     UsersComponent,
-    UserdetailComponent
+    UserdetailComponent,
+    LoginpageComponent,
+    UserupdateComponent
   ],
   imports: [
     BrowserModule,

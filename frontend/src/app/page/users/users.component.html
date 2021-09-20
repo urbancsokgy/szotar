@@ -1,25 +1,25 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col col-md-10 offset-md-1">
-      <a class="d-grid gap-2 " routerLink="/register/:add">
+    <div class="col col-12 col-md-10 offset-md-1">
+      <a class="d-grid gap-2 " routerLink="/register/add">
         <button class="btn btn-primary" type="button">Új felhasználó</button>
       </a>
     </div>
   </div>
-  <div class="row row-cols-1  row-cols-sm-2 row-cols-md-auto row-cols-lg-auto justify-content-center ">
+  <div class="row row-cols-1  row-cols-sm-auto row-cols-md-auto row-cols-lg-auto justify-content-center ">
     <div class="col" *ngFor="let user of users">
-      <!-- <div class="card-group"> -->
+      <div class="card-group">
         <div class="card grow border border-left-2 border-dark shadow-lg rounded mx-auto mt-4 d-flex justify-content-center"
-          style="width: 18rem;">
-          <img src={{imgUrl}}{{user.avatar}} class="card-img-top shadow-lg" alt="{{user.lastName}} {{user.firstName}}">
+          style="max-width: 18rem;">
+          <img src={{imgUrl}}{{user.avatar}} class="card-img-top shadow-lg mx-auto" alt="{{user.lastName}} {{user.firstName}}">
           <div class="card-body">
             <h5 class="card-title">{{user.lastName}} {{user.firstName}}</h5>
             <p class="card-text">Email: {{user.email}}</p>
             <p class="card-text">Jogosultság: {{user.role}}</p>
-            <a routerLink="/userdetail/{{user._id}} " class="btn btn-primary">Részletek</a>
+            <a routerLink="/userdetail/{{user._id}}" class="btn btn-primary">Részletek</a>
           </div>
         </div>
       </div>
-    <!-- </div> -->
+    </div>
   </div>
 </div>
